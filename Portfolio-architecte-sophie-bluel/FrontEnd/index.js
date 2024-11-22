@@ -1,3 +1,17 @@
+let logout = document.getElementById("login");
+let modifyIcon = document.querySelector(".modify_icon");
+let modifyText = document.getElementById("modify");
+const shadow = document.querySelector(".shadow");
+const visibilityModale = document.querySelector(".modale");
+const closeIcon = document.querySelector(".close_icon");
+const modaleButton = document.querySelector(".modale_button");
+const addModale = document.querySelector(".add_modale");
+const returnIcon = document.querySelector(".return_icon");
+const crossIcon = document.getElementById("close");
+let modaleFormTitle = document.querySelector(".modale_form-title");
+const modaleFormCategory = document.querySelector(".modale_form-category");
+const token = window.localStorage.getItem("token");
+
 //Création du container des filtres
 
 let portfolioDivElt = document.createElement("div");
@@ -123,21 +137,6 @@ function createModaleImage(work) {
   document.querySelector(".modale_image-container").appendChild(figure);
 }
 
-let logout = document.getElementById("login");
-let modifyIcon = document.querySelector(".modify_icon");
-let modifyText = document.getElementById("modify");
-const shadow = document.querySelector(".shadow");
-const visibilityModale = document.querySelector(".modale");
-const closeIcon = document.querySelector(".close_icon");
-const modaleButton = document.querySelector(".modale_button");
-const addModale = document.querySelector(".add_modale");
-const returnIcon = document.querySelector(".return_icon");
-const crossIcon = document.getElementById("close");
-let modaleFormTitle = document.querySelector(".modale_form-title");
-const modaleFormCategory = document.querySelector(".modale_form-category");
-
-const token = window.localStorage.getItem("token");
-
 if (token) {
   logout.innerText = "logout";
   logout.setAttribute("href", "");
@@ -229,6 +228,7 @@ const submitModaleButton = document.getElementById("submit_modale-button");
 const addImage = document.querySelector('input[type="file"]');
 
 // Fonction de vérification avant envoi
+
 function checkForm() {
   const title = modaleFormTitle.value;
   const category = modaleFormCategory.value;
