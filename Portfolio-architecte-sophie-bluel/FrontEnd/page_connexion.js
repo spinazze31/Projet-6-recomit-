@@ -1,7 +1,6 @@
 let errorConnexion = document.querySelector(".error_connexion");
 
 let form = document.querySelector(".form_container");
-console.log(form);
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -23,7 +22,6 @@ form.addEventListener("submit", (event) => {
     .then((res) => res.json())
     .then((resRequest) => {
       if (resRequest.token) {
-        console.log(resRequest);
         window.localStorage.setItem("token", resRequest.token);
         window.location.href = "./index.html";
       } else {

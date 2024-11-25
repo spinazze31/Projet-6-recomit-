@@ -29,7 +29,8 @@ fetch("http://localhost:5678/api/works")
   .then((works) => {
     createImages(works);
     deleteWork();
-    createWork(previewImage);
+    createWork();
+
     //Récupération des catégories
 
     fetch("http://localhost:5678/api/categories")
@@ -203,8 +204,6 @@ function deleteWork() {
   for (let i = 0; i < garbageIcon.length; i++) {
     garbageIcon[i].addEventListener("click", (e) => {
       const id = garbageIcon[i].dataset.id;
-      console.log(id);
-      console.log(figureDataModale[i].dataset.id);
       if (id === figureDataModale[i].dataset.id) {
         figureDataModale[i].remove();
         figureData[i].remove();
@@ -215,7 +214,6 @@ function deleteWork() {
 }
 
 function deleteWorkFromServer(id) {
-  console.log(token);
   fetch("http://localhost:5678/api/works/" + id, {
     method: "DELETE",
     headers: {
@@ -301,7 +299,6 @@ function createWorkToServer(formData) {
   })
     .then((res) => res.json())
     .then((newWork) => {
-      console.log(newWork);
       createImage(newWork);
       createModaleImage(newWork);
     })
@@ -311,6 +308,7 @@ function createWorkToServer(formData) {
 }
 
 //Déconnexion
+
 logout.addEventListener("click", (e) => {
   window.localStorage.removeItem("token");
 });
