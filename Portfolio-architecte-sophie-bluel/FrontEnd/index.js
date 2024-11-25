@@ -254,7 +254,6 @@ function previewImage(event) {
     const newImage = document.createElement("img");
     newImage.classList = "new_modale-image";
     newImage.src = URL.createObjectURL(file);
-    console.log(file);
     addModaleImage.appendChild(newImage);
     newImage.style.display = "initial";
   }
