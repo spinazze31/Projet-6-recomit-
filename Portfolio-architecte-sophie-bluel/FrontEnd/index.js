@@ -10,7 +10,6 @@ const returnIcon = document.querySelector(".return_icon");
 const crossIcon = document.getElementById("close");
 let modaleFormTitle = document.querySelector(".modale_form-title");
 const modaleFormCategory = document.querySelector(".modale_form-category");
-const token = window.localStorage.getItem("token");
 
 //Création du container des filtres
 
@@ -118,6 +117,8 @@ function filterWork(works, index) {
     });
   });
 }
+
+const token = window.localStorage.getItem("token");
 
 //Fonction de création d'un travail dans la modale
 
