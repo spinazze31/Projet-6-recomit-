@@ -133,6 +133,7 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  position: relative;
 }
 header {
   display: flex;
@@ -212,6 +213,10 @@ li:hover {
   color: #1d6154;
 }
 
+.error_connexion {
+  color: red;
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -262,12 +267,13 @@ li:hover {
 .shadow {
   display: none;
   position: absolute;
-  width: 1420px;
-  height: 470vh;
+  width: 100%;
+  height: 100%;
   background-color: black;
   opacity: 0.7;
   z-index: 1;
-  left: 50px;
+  left: 0;
+  top: 0;
 }
 
 .modale {
@@ -276,8 +282,8 @@ li:hover {
   align-items: center;
   visibility: hidden;
   gap: 10px;
-  top: 78%;
-  left: 29%;
+  top: 12%;
+  left: 25%;
   width: 630px;
   height: 688px;
   background-color: white;
@@ -365,8 +371,8 @@ li:hover {
   align-items: center;
   visibility: hidden;
   gap: 10px;
-  top: 78%;
-  left: 29%;
+  top: 12%;
+  left: 25%;
   width: 630px;
   height: 688px;
   background-color: white;
@@ -480,7 +486,6 @@ li:hover {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 20px;
 }
 
 .filter_setting {
@@ -497,11 +502,6 @@ li:hover {
   border: solid 1px;
 }
 
-.filter_setting:active {
-  color: white;
-  background-color: #1d6154;
-}
-
 #filter1 {
   width: 100px;
 }
@@ -514,12 +514,18 @@ li:hover {
   width: 215px;
 }
 
-#filter4 {
+#filter0 {
   width: 100px;
+}
+
+.filter_active {
+  color: white;
+  background-color: #1d6154;
 }
 
 .gallery {
   width: 100%;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;

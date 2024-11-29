@@ -25,7 +25,10 @@ form.addEventListener("submit", (event) => {
         window.localStorage.setItem("token", resRequest.token);
         window.location.href = "./index.html";
       } else {
-        errorConnexion.innerText = "Erreur de connexion";
+        errorConnexion.innerText = "login ou password incorrect";
       }
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });

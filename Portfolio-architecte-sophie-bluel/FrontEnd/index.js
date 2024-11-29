@@ -97,7 +97,17 @@ function filterWorks(categories, works) {
 
 function filterWork(works, index) {
   const buttonAll = document.getElementById("filter0");
+  buttonAll.classList.add("filter_active");
   buttonAll.addEventListener("click", (e) => {
+    if (!buttonAll.classList.contains("filter_active")) {
+      buttonAll.classList.add("filter_active");
+    }
+    const allFilterButtons = document.querySelectorAll(".filter_setting");
+    allFilterButtons.forEach((button) => {
+      if (button !== buttonAll) {
+        button.classList.remove("filter_active");
+      }
+    });
     let filteredWorksAll = works.filter(function (work) {
       return work.categoryId === work.categoryId;
     });
@@ -108,6 +118,11 @@ function filterWork(works, index) {
   });
   const filterButton = document.getElementById("filter" + index);
   filterButton.addEventListener("click", (e) => {
+    const allFilterButtons = document.querySelectorAll(".filter_setting");
+    allFilterButtons.forEach((button) => {
+      button.classList.remove("filter_active");
+    });
+    filterButton.classList.add("filter_active");
     let filteredWorks = works.filter(function (work) {
       return work.categoryId === index;
     });
@@ -139,11 +154,14 @@ function createModaleImage(work) {
   document.querySelector(".modale_image-container").appendChild(figure);
 }
 
+const filterContainer = document.querySelector(".filter_container");
+
 if (token) {
   logout.innerText = "logout";
   logout.setAttribute("href", "");
   modifyIcon.style.display = "initial";
   modifyText.innerText = "modifier";
+  filterContainer.style.display = "none";
 }
 
 //Modales
@@ -151,6 +169,8 @@ if (token) {
 modifyText.addEventListener("click", (e) => {
   visibilityModale.style.visibility = "visible";
   shadow.style.display = "initial";
+  submitModaleButton.style.backgroundColor = "#a7a7a7";
+  deletePreviewImage();
 });
 
 closeIcon.addEventListener("click", (e) => {
@@ -164,24 +184,13 @@ modaleButton.addEventListener("click", (e) => {
 
 returnIcon.addEventListener("click", (e) => {
   addModale.style.visibility = "hidden";
-  modaleFormTitle.value = "";
-  modaleFormCategory.value = "";
-  const previewImage = document.querySelector(".add_modale-image img");
-  if (previewImage) {
-    previewImage.remove();
-  }
+  deletePreviewImage();
 });
 
 crossIcon.addEventListener("click", (e) => {
   addModale.style.visibility = "hidden";
-  modaleFormTitle.value = "";
-  modaleFormCategory.value = "";
   visibilityModale.style.visibility = "hidden";
   shadow.style.display = "none";
-  const previewImage = document.querySelector(".add_modale-image img");
-  if (previewImage) {
-    previewImage.remove();
-  }
 });
 
 function closeModale(e) {
@@ -192,6 +201,16 @@ function closeModale(e) {
   }
 }
 document.body.addEventListener("click", closeModale);
+
+function deletePreviewImage() {
+  modaleFormTitle.value = "";
+  modaleFormCategory.value = "";
+  const previewImage = document.querySelector(".add_modale-image img");
+  if (previewImage) {
+    previewImage.remove();
+  }
+  addImage.value = "";
+}
 
 //Fonction de suppression d'un travail
 
@@ -235,7 +254,7 @@ function checkForm() {
 
   if (title && category > 0 && file) {
     submitModaleButton.style.backgroundColor = "#1d6154";
-  }
+  } else submitModaleButton.style.backgroundColor = "#a7a7a7";
 }
 
 // Ecouteur d'événements pour vérifier les champs du formulaire
@@ -252,6 +271,8 @@ function previewImage(event) {
 
   if (addImage.length > 0) {
     const file = addImage[0];
+    const existingImage = addModaleImage.querySelector(".new_modale-image");
+
     const newImage = document.createElement("img");
     newImage.classList = "new_modale-image";
     newImage.src = URL.createObjectURL(file);
@@ -259,6 +280,8 @@ function previewImage(event) {
     newImage.style.display = "initial";
   }
 }
+addImage = document.querySelector('input[type="file"]');
+addImage.addEventListener("change", previewImage);
 
 //Creation nouvelle image sur le serveur depuis la modale
 
@@ -301,6 +324,9 @@ function createWorkToServer(formData) {
     .then((newWork) => {
       createImage(newWork);
       createModaleImage(newWork);
+      visibilityModale.style.visibility = "hidden";
+      addModale.style.visibility = "hidden";
+      shadow.style.display = "none";
     })
     .catch((error) => {
       console.log(error);
