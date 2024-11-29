@@ -10,6 +10,7 @@ const returnIcon = document.querySelector(".return_icon");
 const crossIcon = document.getElementById("close");
 let modaleFormTitle = document.querySelector(".modale_form-title");
 const modaleFormCategory = document.querySelector(".modale_form-category");
+const token = window.localStorage.getItem("token");
 
 //Création du container des filtres
 
@@ -133,8 +134,6 @@ function filterWork(works, index) {
   });
 }
 
-const token = window.localStorage.getItem("token");
-
 //Fonction de création d'un travail dans la modale
 
 function createModaleImage(work) {
@@ -243,7 +242,7 @@ function deleteWorkFromServer(id) {
 }
 
 const submitModaleButton = document.getElementById("submit_modale-button");
-const addImage = document.querySelector('input[type="file"]');
+let addImage = document.querySelector('input[type="file"]');
 
 // Fonction de vérification avant envoi
 
@@ -267,7 +266,7 @@ const addModaleButton = document.querySelector(".add_modale-button");
 const addModaleImage = document.querySelector(".add_modale-image");
 
 function previewImage(event) {
-  const addImage = event.target.files;
+  let addImage = event.target.files;
 
   if (addImage.length > 0) {
     const file = addImage[0];
@@ -332,6 +331,8 @@ function createWorkToServer(formData) {
       console.log(error);
     });
 }
+
+console.log(token);
 
 //Déconnexion
 

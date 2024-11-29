@@ -133,7 +133,6 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
-  position: relative;
 }
 header {
   display: flex;
@@ -245,6 +244,10 @@ li:hover {
   margin-bottom: 1em;
 }
 
+#portfolio {
+  position: relative;
+}
+
 .gallery_container {
   display: flex;
   justify-content: center;
@@ -266,7 +269,7 @@ li:hover {
 
 .shadow {
   display: none;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background-color: black;
@@ -282,7 +285,7 @@ li:hover {
   align-items: center;
   visibility: hidden;
   gap: 10px;
-  top: 12%;
+  top: -0.5%;
   left: 25%;
   width: 630px;
   height: 688px;
@@ -371,7 +374,7 @@ li:hover {
   align-items: center;
   visibility: hidden;
   gap: 10px;
-  top: 12%;
+  top: -0.5%;
   left: 25%;
   width: 630px;
   height: 688px;
